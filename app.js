@@ -26,9 +26,14 @@ app.configure('development', function(){
 });
 
 app.get('/', routes.index);
-app.get('/books', routes.books.all);
-app.get('/books/:id', routes.books.one);
-app.post('/books', routes.books.create);
+
+app.get('/players', routes.players.all);
+app.get('/players/:id', routes.players.one);
+app.post('/players', routes.players.create);
+
+app.get('/tournaments', routes.tournaments.all);
+app.get('/tournaments/:id', routes.tournaments.one);
+app.post('/tournaments', routes.tournaments.create);
 
 
 http.createServer(app).listen(app.get('port'), function(){
