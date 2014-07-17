@@ -1,30 +1,39 @@
 extends layout
 
 block content
-  h1 
-    a( href="/" ) Warmachine Tournament Tracker
 
-  div#initialContent
-    = appData
+  .container
 
-  div.app
+    h1 
+      a( href="/" ).lead Warmachine Tournament Tracker
 
-  script(id="playertemplate", type="text/x-handlebars")
-    <a href="#" class="name">{{name}}</a>
-    <p>City: {{City}}</p>
+    div#initialContent
+      = appData
+
+    div.app
+
+    script(id="playertemplate", type="text/x-handlebars")
+      <a href="#" class="name">{{name}}</a>
+      <p>City: {{City}}</p>
 
 
-  script(id="detailedplayertemplate", type="text/x-handlebars")
-    <h2>{{name}}</h2>
-    <p>City: {{City}}</p>
-    #addPlayer
-      a(href="#submit/player") Add Player
+    script(id="detailedplayertemplate", type="text/x-handlebars")
+      <h2>{{name}}</h2>
+      <p>City: {{City}}</p>
 
-  script(id="submitplayertemplate", type="text/x-handlebars")
-    form(action="" method="").addPlayer
-      | Name:
-      input(type="text", name="name")
-      | City:
-      input(type="text", name="City")
+    script(id="submitplayertemplate", type="text/x-handlebars")
+      form(action="" method="").addPlayer.form-horizontal
+        .form-group
+          label(for="name" class="col-sm-2 control-label") Name
+          .col-sm-6
+            input(type="text", class="form-control" name="name")
+        .form-group
+          label(for="City" class="col-sm-2 control-label") City
+          .col-sm-6
+            input(type="text", class="form-control" name="City")
+        .form-group
+          .col-sm-offset-2.col-sm-10
+            button(type="submit").submit_button.btn.btn-primary Submit
 
-      input(type="submit", value="Submit").submit_button
+  footer
+    a(href="#submit/player") Add Player
