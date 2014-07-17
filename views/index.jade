@@ -4,8 +4,9 @@ block content
 
   .container
 
-    h1 
-      a( href="/" ).lead Warmachine Tournament Tracker
+    .page-header
+      h1
+        a( href="/" ).lead Warmachine Tournament Tracker
 
     div#initialContent
       = appData
@@ -16,12 +17,21 @@ block content
       <a href="#" class="name">{{name}}</a>
       <p>City: {{City}}</p>
 
+    script(id="tournamentdropdown", type="text/x-handlebars")
+      option(name="{{name}}")
+
+    script(id="detailedtournamenttemplate" type="text/x-handlebars")
+      h3 Tournament
+
 
     script(id="detailedplayertemplate", type="text/x-handlebars")
       <h2>{{name}}</h2>
       <p>City: {{City}}</p>
 
     script(id="submitplayertemplate", type="text/x-handlebars")
+
+      h3 Add a New Player
+
       form(action="" method="").addPlayer.form-horizontal
         .form-group
           label(for="name" class="col-sm-2 control-label") Name
@@ -35,5 +45,5 @@ block content
           .col-sm-offset-2.col-sm-10
             button(type="submit").submit_button.btn.btn-primary Submit
 
-  footer
-    a(href="#submit/player") Add Player
+  footer.container
+    a(href="#submit/player").submit_player Add Player
