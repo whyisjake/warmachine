@@ -15,7 +15,7 @@ block content
 
     script(id="playertemplate", type="text/x-handlebars")
       <a href="#" class="name">{{name}}</a>
-      <p>City: {{City}}</p>
+      <p>City: {{city}}</p>
 
     script(id="tournamentdropdown", type="text/x-handlebars")
       option(name="{{name}}")
@@ -25,8 +25,13 @@ block content
 
 
     script(id="detailedplayertemplate", type="text/x-handlebars")
-      <h2>{{name}}</h2>
-      <p>City: {{City}}</p>
+      <script src="http://en.gravatar.com/{{{wordpress}}}.json?callback=Profile"></script>
+      .row
+        .col-md-8
+          <h2>{{name}}</h2>
+          <p>City: {{city}}</p>
+        .col-md-4
+          img(src="" data-email="{{email}}")
 
     script(id="submitplayertemplate", type="text/x-handlebars")
 
@@ -38,12 +43,25 @@ block content
           .col-sm-6
             input(type="text", class="form-control" name="name")
         .form-group
-          label(for="City" class="col-sm-2 control-label") City
+          label(for="email" class="col-sm-2 control-label") Email
           .col-sm-6
-            input(type="text", class="form-control" name="City")
+            input(type="email", class="form-control" name="email")
         .form-group
-          .col-sm-offset-2.col-sm-10
+          label(for="wordpress" class="col-sm-2 control-label") WordPress.com Username
+          .col-sm-6
+            input(type="text", class="form-control" name="wordpress")
+        .form-group
+          label(for="city" class="col-sm-2 control-label") City
+          .col-sm-6
+            input(type="text", class="form-control" name="city")
+        .form-group
+          label(for="tournament" class="col-sm-2 control-label") Tournament
+          .col-sm-6.select
+            select(name="tournament" class="form-control tournament")
+        .form-group
+          .col-sm-offset-2.col-sm-6
             button(type="submit").submit_button.btn.btn-primary Submit
 
   footer.container
+    hr
     a(href="#submit/player").submit_player Add Player

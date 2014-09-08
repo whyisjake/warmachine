@@ -17,11 +17,6 @@ define(["backbone", "handlebars", "jquery", "events"], function(Backbone, Handle
       var id = this.model.get("_id");
       var url = "players/" + id;
       Events.trigger("router:navigate", url);
-    },
-    submitPlayerLink: function(e) {
-      e.preventDefault();
-      var url = "submit/player";
-      Events.trigger("router:navigate", url);
     }
   });
 

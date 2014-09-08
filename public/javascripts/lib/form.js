@@ -1,36 +1,40 @@
-require(['jquery'], function( $ ) {
+require(['jquery', 'md5'], function( $ ) {
 
-	console.log( 'Phew. We made it...' );
+	jQuery( document ).ready( function( $ ) {
 
-	// Let's save the player
-	$( 'body' ).on( 'click', '.submit_button', function( e ) {
+		function Profile( data ) {
+			console.log( data );
+		}
 
-		console.log('Click?');
+		// Let's save the player
+		$( 'body' ).on( 'click', '.submit_button', function( e ) {
 
-		// Prevent the button from triggering
-		e.preventDefault();
+			// Prevent the button from triggering
+			e.preventDefault();
 
-		$( this ).prop( 'disabled', true );
+			$( this ).prop( 'disabled', true );
 
-		// Grab all of the inputs
-		var inputs = $( '.addPlayer :input' );
+			// Grab all of the inputs
+			var inputs = $( '.addPlayer :input' );
 
-		// Grab all of the form data.
-		var form = {};
-		inputs.each( function() {
-			form[ this.name ] = $( this ).val();
-		});
+			// Grab all of the form data.
+			var form = {};
+			inputs.each( function() {
+				form[ this.name ] = $( this ).val();
+			});
 
-		form.action = 'addPlayer';
+			console.log(form);
 
-		// Make the ajax request with the form data.
-		$.ajax({
-			url: "/players",
-			data: form,
-			type: 'POST',
-			success: function( data ){
-				console.log( JSON.parse(data) );
-			}
+			// Make the ajax request with the form data.
+			$.ajax({
+				url: "/players",
+				data: form,
+				type: 'POST',
+				success: function( data ){
+					console.log( data );
+				}
+			});
+
 		});
 
 	});
